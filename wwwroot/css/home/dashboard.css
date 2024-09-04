@@ -1,0 +1,68 @@
+.card__indicadores {
+    border-radius: .7rem;
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+}
+
+.card__indicadores .icon {
+    border-radius: 50%;
+    background-color: #00000017;
+    padding: .75rem;
+    display: flex;
+    align-items: center;
+    color: #4d73a7;
+}
+
+.card__indicadores .icon i {
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.card__indicadores .meta {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.card__indicadores .meta .text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #718096;
+    position: relative;
+}
+
+.card__indicadores .meta .text small {
+    position: absolute;
+    width: 100%;
+    margin-left: 3px;
+    top: 2px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.card__indicadores .meta .value {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1a202c;
+}
+
+.grid__indicadores {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.grid__graficos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.card__graficos {
+    border-radius: .7rem;
+}

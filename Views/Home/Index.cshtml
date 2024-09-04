@@ -1,8 +1,92 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    @* <div class="d-flex justify-content-end mb-3">
+    <select id="filter" class="form-select w-25">
+    <option value="month">Mês</option>
+    <option value="quarter">Trimestre</option>
+    <option value="year">Ano</option>
+    </select>
+    </div> *@
+
+    <!-- Indicadores -->
+    <div class="grid__indicadores text-center mb-4">
+        <div class="w-full">
+            <div class="card__indicadores p-3 bg-light">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <div class="meta">
+                    <div class="text relative">Notas emitidas</div>
+                    <div class="value" id="totalEmitidas">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="card__indicadores p-3 bg-light">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope-open"></i>
+                </div>
+                <div class="meta">
+                    <div class="text relative">Notas emitidas <small>(sem cobrança)</small></div>
+                    <div class="value" id="semCobranca">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="card__indicadores p-3 bg-light">
+                <div class="icon">
+                    <i class="fa-solid fa-business-time"></i>
+                </div>
+                <div class="meta">
+                    <div class="text relative">Notas vencidas <small>(inadimplência)</small></div>
+                    <div class="value" id="inadimplencia">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="card__indicadores p-3 bg-light">
+                <div class="icon">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+                <div class="meta">
+                    <div class="text relative">Notas a vencer</div>
+                    <div class="value" id="aVencer">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="card__indicadores p-3 bg-light">
+                <div class="icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="meta">
+                    <div class="text relative">Notas pagas</div>
+                    <div class="value" id="pagas">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="grid__graficos gap-4">
+        <div class="w-full card__graficos bg-light py-3 px-2">
+            <h4 class="px-3">Evolução da Inadimplência</h4>
+            <div id="inadimplenciaChart"></div>
+        </div>
+        <div class="w-full card__graficos bg-light py-3 px-2">
+            <h4 class="px-3">Evolução da Receita recebida</h4>
+            <div id="receitaChart"></div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/home/dashboard.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home/dashboard.css" />
+}

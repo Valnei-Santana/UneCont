@@ -1,18 +1,43 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+}
+
+#closeSidebar {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
+    #closeSidebar {
+        display: none;
+    }
+    
+    #openSidebar {
+        display: none;
+    }
+}
+
+.card__tables {
+    border-radius: .7rem;
+}
+
+.card__tables .title {
+    font-weight: bold;
+    font-size: 20px;
+    padding: .75rem;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }

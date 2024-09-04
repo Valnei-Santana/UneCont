@@ -24,7 +24,8 @@
 
 <body>
     <div class="d-flex">
-        <div class="sidebar">
+        <div id="sidebar" class="sidebar minimize">
+            <div id="closeSidebar"><i class="fa-solid fa-xmark"></i></div>
             <h5 class="pb-2">UneCont</h5>
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav__item">
@@ -32,21 +33,20 @@
                         asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav-link text-white @((currentController == "Home" && currentAction == "Privacy") ? "fw-bold" : "")"
-                        asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link text-white @((currentController == "Home" && currentAction == "Notes") ? "fw-bold" : "")"
+                        asp-area="" asp-controller="Home" asp-action="Notes">Lista de Notas</a>
                 </li>
             </ul>
         </div>
-        <div class="header">
+        <div class="content__dashboard">
             <nav
-                class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                class="navbar navbar-expand-sm px-4 navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <div id="openSidebar"><i class="fa-solid fa-bars"></i></div>
+                    <div class="container-fluid">
+                        <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home"
+                            asp-action="Index">@ViewData["Title"]</a>
+                    </div>
                 </div>
             </nav>
             <div class="container">

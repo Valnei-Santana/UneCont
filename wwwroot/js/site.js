@@ -1,4 +1,21 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var Panel = {
+    init: function () {
+        this.bindEvents();
+    },
+    bindEvents: function () {
+        $('#openSidebar').on('click', this.openSidebar);
+        $('#closeSidebar').on('click', this.closeSidebar);
+    },
+    openSidebar: function () {
+        $('#sidebar').animate({ "left": "0px" }, "slow");
+    },
+    closeSidebar: function () {
+        $('#sidebar').animate({ "left": "-200px" }, "slow");
+    }
 
-// Write your JavaScript code.
+};
+
+
+$(document).ready(function () {
+    Panel.init();
+});

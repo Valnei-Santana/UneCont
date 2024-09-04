@@ -66,3 +66,14 @@
 .card__graficos {
     border-radius: .7rem;
 }
+
+@media (max-width: 680px) {
+    .grid__indicadores {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    .grid__graficos {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}

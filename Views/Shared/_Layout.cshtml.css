@@ -8,9 +8,14 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: #313a46;
     min-width: 200px;
     color: #FFF;
+    z-index: 999;
 }
 
-.header {
+.sidebar.minimize {
+    width: 0px;
+}
+
+.content__dashboard {
     width: 100%;
 }
 
@@ -74,10 +79,16 @@ button.accept-policy {
 }
 
 @media (min-width: 1280px) {
-    .header {
+    .content__dashboard {
         margin-left: 200px;
     }
     .footer {
         margin-left: 200px;
+    }
+}
+
+@media (max-width: 680px) {
+    .footer {
+        width: 100%;
     }
 }

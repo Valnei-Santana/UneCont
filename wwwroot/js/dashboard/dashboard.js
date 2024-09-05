@@ -12,19 +12,14 @@ var Dashboard = {
         this.pagasElement = document.getElementById('pagas');
     },
     loadData: function () {
-        const data = {
-            totalEmitidas: 100000,
-            semCobranca: 20000,
-            inadimplencia: 15000,
-            aVencer: 30000,
-            pagas: 50000
-        };
+        ApiService.fetchData('/notes/indicators', (res) => {
+            this.totalEmitidasElement.innerHTML = `${formatCurrency(res?.totalEmitidas)}`;
+            this.semCobrancaElement.innerHTML = `${formatCurrency(res?.semCobranca)}`;
+            this.inadimplenciaElement.innerHTML = `${formatCurrency(res?.inadimplencia)}`;
+            this.aVencerElement.innerHTML = `${formatCurrency(res?.aVencer)}`;
+            this.pagasElement.innerHTML = `${formatCurrency(res?.pagas)}`;
+        });
 
-        this.totalEmitidasElement.innerHTML = `R$ ${data.totalEmitidas}`;
-        this.semCobrancaElement.innerHTML = `R$ ${data.semCobranca}`;
-        this.inadimplenciaElement.innerHTML = `R$ ${data.inadimplencia}`;
-        this.aVencerElement.innerHTML = `R$ ${data.aVencer}`;
-        this.pagasElement.innerHTML = `R$ ${data.pagas}`;
     },
     initCharts: function () {
         const inadimplenciaOptions = {

@@ -1,24 +1,19 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using UneCont.Data;
 using UneCont.Models;
 
 namespace UneCont.Controllers;
 
-public class HomeController : Controller
+public class DashboardController : BaseController
 {
-    private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public DashboardController(ApplicationDbContext context, ILogger<NotesController> logger)
+         : base(context, logger)
     {
-        _logger = logger;
     }
 
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Notes()
     {
         return View();
     }

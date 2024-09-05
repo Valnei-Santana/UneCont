@@ -1,1 +1,34 @@
-# UneCont
+# Dashboard de Indicadores e Gráficos
+
+Teste para UneCont utilizando .NET 8.0 usando o padrão MVC. Ele apresenta indicadores e gráficos financeiros, além de uma listagem de notas assim como solicitado no teste técnico...
+
+## Tecnologias Utilizadas
+
+- **Back-End**: .NET 8.0 MVC
+  - **Pacotes**: `Microsoft.EntityFrameworkCore.Design` e `Microsoft.EntityFrameworkCore.SqlServer` (versão 8.0.8)
+
+- **Front-End**:
+  - **ApexCharts**: Para gráficos interativos.
+  - **Bootstrap**: Para design responsivo. (solicitado)
+
+## Configuração
+
+1. **Banco de Dados**: Atualize o arquivo `appsettings.json` com as credenciais do seu banco de dados:
+    ```json
+    {
+      "ConnectionStrings": {
+        "DefaultConnection": "Server=SEU_SERVIDOR;Database=SEU_BANCO;User Id=SEU_USUARIO;Password=SUA_SENHA;"
+      }
+    }
+    ```
+
+2. **Execução**:
+    - Clone o repositório.
+    - Instale as dependências com: `dotnet restore`
+    - Configure o banco de dados no `appsettings.json`.
+    - Renomeie o `appsettings.json` para `appsettings.Development.json` caso esteja rodando em dev.
+    - Execute as migrações com: `dotnet ef database update`.
+    - Inicie a aplicação com: `dotnet run`.
+
+A aplicação estará disponível em `http://localhost:7255`.
+

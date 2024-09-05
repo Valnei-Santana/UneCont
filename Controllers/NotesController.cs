@@ -100,6 +100,60 @@ public class NotesController : BaseController
         return Json(indicators);
     }
 
+    [HttpGet("notes/graphic")]
+    public async Task<IActionResult> GetGraphicPerMonth(string type = "receita", int? year = null)
+    {
+        int currentYear = year ?? DateTime.Now.Year;
+
+        DateTime startDate = new DateTime(currentYear, 1, 1);
+        DateTime endDate = new DateTime(currentYear, 12, 31, 23, 59, 59, 999);
+
+        if (currentYear == DateTime.Now.Year)
+            endDate = new DateTime(currentYear, DateTime.Now.Month, DateTime.DaysInMonth(currentYear, DateTime.Now.Month), 23, 59, 59, 999);
+
+        NoteStatus statusFilter;
+
+        switch (type.ToLower())
+        {
+            case "receita":
+                statusFilter = NoteStatus.PaymentCompleted;
+                break;
+            default:
+                statusFilter = NoteStatus.PaymentOverdue;
+                break;
+        }
+
+        var data = await _context.Notes
+            .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate && n.Status == statusFilter)
+            .GroupBy(n => new { n.IssueDate.Year, n.IssueDate.Month })
+            .Select(g => new
+            {
+                Month = g.Key.Month,
+                TotalValue = g.Sum(n => n.NoteValue)
+            })
+            .OrderBy(x => x.Month)
+            .ToListAsync();
+
+        var categories = new List<string>();
+        var values = new List<decimal>();
+        Boolean isCurrentYear = currentYear == DateTime.Now.Year;
+        for (int month = 1; month <= (isCurrentYear ? DateTime.Now.Month : 12); month++)
+        {
+            var monthName = new DateTime(currentYear, month, 1).ToString("MMM", new System.Globalization.CultureInfo("pt-BR"));
+            categories.Add(monthName);
+            var monthData = data.FirstOrDefault(d => d.Month == month);
+            values.Add(monthData != null ? monthData.TotalValue : 0);
+        }
+
+        var result = new
+        {
+            data = values,
+            categories = categories
+        };
+
+        return Json(result);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

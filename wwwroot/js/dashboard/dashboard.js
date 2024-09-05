@@ -2,6 +2,7 @@ var Indicadores = {
     init: function () {
         this.bindElements();
         this.loadData();
+        this.bindEvents();
     },
     bindElements: function () {
         this.totalEmitidasElement = document.getElementById('totalEmitidas');
@@ -9,16 +10,59 @@ var Indicadores = {
         this.inadimplenciaElement = document.getElementById('inadimplencia');
         this.aVencerElement = document.getElementById('aVencer');
         this.pagasElement = document.getElementById('pagas');
+
+        this.filterMonth = document.getElementById('filterMonth');
+        this.filterQuarter = document.getElementById('filterQuarter');
+
+        //Filtros
+        this.filterIndicators = document.getElementById('filterIndicators');
+        this.filterIndicatorsMonth = document.getElementById('filterIndicatorsMonth');
+        this.filterIndicatorsYear = document.getElementById('filterIndicatorsYear');
+        this.filterIndicatorsQuarter = document.getElementById('filterIndicatorsQuarter');
+    },
+    bindEvents: function () {
+        this.filterIndicators.addEventListener('change', (event) => {
+            this.updateMonthFilter(event);
+            this.loadData();
+        });
+
+        this.filterIndicatorsQuarter.addEventListener('change', () => {
+            this.loadData();
+        });
+
+        this.filterIndicatorsMonth.addEventListener('change', () => {
+            this.loadData();
+        });
+
+        this.filterIndicatorsYear.addEventListener('change', () => {
+            this.loadData();
+        });
     },
     loadData: function () {
-        ApiService.fetchData('/notes/indicators', (res) => {
+        const filterType = this.filterIndicators.value;
+        const filterYear = this.filterIndicatorsYear.value;
+        const filterMonth = this.filterIndicatorsMonth.value;
+        const filterQuarter = this.filterIndicatorsQuarter.value;
+
+        ApiService.fetchData(`/notes/indicators?filter=${filterType}&year=${filterYear}&month=${filterMonth}&quarter=${filterQuarter}`, (res) => {
             this.totalEmitidasElement.innerHTML = `${formatCurrency(res?.totalEmitidas)}`;
             this.semCobrancaElement.innerHTML = `${formatCurrency(res?.semCobranca)}`;
             this.inadimplenciaElement.innerHTML = `${formatCurrency(res?.inadimplencia)}`;
             this.aVencerElement.innerHTML = `${formatCurrency(res?.aVencer)}`;
             this.pagasElement.innerHTML = `${formatCurrency(res?.pagas)}`;
         });
-    }
+    },
+    updateMonthFilter: function (event) {
+        if (event.target.value === 'month')
+            this.filterMonth.style.display = 'block';
+        else
+            this.filterMonth.style.display = 'none';
+
+        if (event.target.value === 'quarter')
+            this.filterQuarter.style.display = 'block';
+        else
+            this.filterQuarter.style.display = 'none';
+    },
 };
 
 var Graficos = {

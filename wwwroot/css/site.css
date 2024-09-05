@@ -10,6 +10,10 @@ html {
     cursor: pointer;
 }
 
+.filterInput {
+    width: 25%;
+}
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -17,9 +21,11 @@ html {
     #closeSidebar {
         display: none;
     }
-    
     #openSidebar {
         display: none;
+    }
+    .filterInput {
+        width: 15%;
     }
 }
 

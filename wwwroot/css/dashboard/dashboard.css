@@ -67,6 +67,24 @@
     border-radius: .7rem;
 }
 
+.filter__month {
+    position: relative;
+}
+
+.filter__month label {
+    position: absolute;
+    top: -25px;
+}
+
+.filter__quarter {
+    position: relative;
+}
+
+.filter__quarter label {
+    position: absolute;
+    top: -25px;
+}
+
 @media (max-width: 680px) {
     .grid__indicadores {
         grid-template-columns: repeat(1, minmax(0, 1fr));

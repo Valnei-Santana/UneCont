@@ -5,11 +5,41 @@
 <div class="container mt-5">
     <div class="d-flex align-items-center justify-content-end mb-3 gap-2">
         <h5>Filtrar por: </h5>
-        <select id="filter" class="form-select w-25">
+        <select id="filterIndicators" class="form-select filterInput">
             <option value="month">Mês</option>
             <option value="quarter">Trimestre</option>
             <option value="year">Ano</option>
         </select>
+        <select id="filterIndicatorsYear" class="form-select filterInput">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+        </select>
+        <div id="filterMonth" class="filterInput filter__month">
+            <label class="fw-bold absolute">Mês:</label>
+            <select id="filterIndicatorsMonth" class="form-select w-full">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div id="filterQuarter" class="filterInput filter__quarter" style="display:none;">
+            <label class="fw-bold absolute">Trimeste:</label>
+            <select id="filterIndicatorsQuarter" class="form-select w-full">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+            </select>
+        </div>
     </div>
 
     <!-- Indicadores -->
@@ -76,7 +106,7 @@
         <div class="w-full card__graficos bg-light py-3 px-2">
             <div class="d-flex justify-content-between pt-2 pb-4">
                 <h4 class="px-3">Evolução da Inadimplência</h4>
-                <select id="filterYearInadimplencia">
+                <select id="filterYearInadimplencia" class="form-select w-25">
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                 </select>
@@ -86,7 +116,7 @@
         <div class="w-full card__graficos bg-light py-3 px-2">
             <div class="d-flex justify-content-between pt-2 pb-4">
                 <h4 class="px-3">Evolução da Receita recebida</h4>
-                <select id="filterYearReceita">
+                <select id="filterYearReceita" class="form-select w-25">
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                 </select>

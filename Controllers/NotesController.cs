@@ -46,9 +46,8 @@ public class NotesController : BaseController
                 if (!quarter.HasValue || quarter.Value < 1 || quarter.Value > 4)
                     throw new ArgumentException("Semestre precisa ser entre 1 e 4!");
 
-                startMonth = 1 * quarter.Value;
-                endMonth = 3 * quarter.Value;
-
+                startMonth = (quarter.Value - 1) * 3 + 1; // Calcula o mês de início (1, 4, 7, 10)
+                endMonth = startMonth + 2;
 
                 startDate = new DateTime(year ?? now.Year, startMonth, 1);
                 endDate = new DateTime(year ?? now.Year, endMonth, DateTime.DaysInMonth(year ?? now.Year, endMonth)).AddTicks(-1);

@@ -21,3 +21,16 @@ function formatCurrency(
 
     return formatter.format(amount);
 }
+
+
+function formatDate(date) {
+    if (date) {
+        var d = new Date(date);
+        var day = String(d.getDate()).padStart(2, '0');
+        var month = String(d.getMonth() + 1).padStart(2, '0');
+        var year = d.getFullYear();
+
+        return year + '/' + month + '/' + day;
+    }
+    return null;
+}

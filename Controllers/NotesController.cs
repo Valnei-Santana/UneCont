@@ -19,14 +19,46 @@ public class NotesController : BaseController
     }
 
     [HttpGet("notes/list")]
-    public async Task<IActionResult> GetNotes(int pageNumber = 1, int pageSize = 10)
+    public async Task<IActionResult> GetNotes(DateTime? issueDate = null, DateTime? billingDate = null, DateTime? paymentDate = null, int? status = null, int pageNumber = 1, int pageSize = 10)
     {
-        var notes = await _context.Notes
+        var query = _context.Notes.AsQueryable();
+
+        if (issueDate.HasValue)
+        {
+            query = query.Where(n => n.IssueDate.Date == issueDate.Value.Date);
+        }
+
+        if (billingDate.HasValue)
+        {
+            query = query.Where(n =>  n.BillingDate.HasValue && n.BillingDate.Value.Date == billingDate.Value.Date);
+        }
+
+        if (paymentDate.HasValue)
+        {
+            query = query.Where(n => n.PaymentDate.HasValue && n.PaymentDate.Value.Date == paymentDate.Value.Date);
+        }
+
+        if (status.HasValue)
+        {
+            query = query.Where(n => (int)n.Status == status.Value);
+        }
+
+        var total = await query.CountAsync();
+
+        var notes = await query
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
 
-        return Json(notes);
+        var lastPage = (int)Math.Ceiling(total / (double)pageSize);
+
+        return Json(new
+        {
+            total,
+            lastPage,
+            pageSize,
+            data = notes
+        });
     }
 
     [HttpGet("notes/indicators")]

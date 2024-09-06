@@ -21,6 +21,8 @@ var Indicadores = {
         this.filterIndicatorsQuarter = document.getElementById('filterIndicatorsQuarter');
     },
     bindEvents: function () {
+        //Capturo os eventos select de cada filtro de indicadores
+
         this.filterIndicators.addEventListener('change', (event) => {
             this.updateMonthFilter(event);
             this.loadData();
@@ -76,6 +78,7 @@ var Graficos = {
         this.yearInadimplenciaElement = document.getElementById('filterYearInadimplencia');
     },
     bindEvents: function () {
+        //Capturo os eventos select de cada gráfico
         this.yearReceitaElement.addEventListener('change', (event) => {
             const selectedYear = event.target.value;
             this.updateReceitaChart(selectedYear);

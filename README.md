@@ -18,7 +18,7 @@ Teste para UneCont utilizando .NET 8.0 usando o padrão MVC. Ele apresenta indic
     ```json
     {
       "ConnectionStrings": {
-        "DefaultConnection": "Server=SEU_SERVIDOR;Database=SEU_BANCO;User Id=SEU_USUARIO;Password=SUA_SENHA;"
+        "DefaultConnection": "Server=SEU_SERVIDOR;Database=SEU_BANCO;User Id=SEU_USUARIO;Password=SUA_SENHA;MultipleActiveResultSets=true;TrustServerCertificate=True;"
       }
     }
     ```

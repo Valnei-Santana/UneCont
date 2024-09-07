@@ -42,11 +42,20 @@
         <div class="content__dashboard">
             <nav
                 class="navbar navbar-expand-sm px-4 navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="d-flex align-items-center gap-2">
-                    <div id="openSidebar"><i class="fa-solid fa-bars"></i></div>
-                    <div class="container-fluid">
-                        <a class="navbar-brand fw-bold" asp-area="" asp-controller="Dashboard"
-                            asp-action="Index">@ViewData["Title"]</a>
+                <div class="w-100 d-flex align-items-center gap-2 justify-content-between py-3">
+                    <div class="d-flex align-items-center gap-2 justify-content-between">
+                        <div id="openSidebar"><i class="fa-solid fa-bars"></i></div>
+                        <div class="container-fluid">
+                            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Dashboard"
+                                asp-action="Index">@ViewData["Title"]</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 avatar__user">
+                        <div class="icon__user"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="fw-bold">Valnei Santana</div>
+                            <div class="fw-lighter">Administrador</div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -61,7 +70,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - UneCont - <a asp-area="" asp-controller="Dashboard" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - UneCont
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

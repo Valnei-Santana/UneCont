@@ -56,6 +56,12 @@ var Notas = {
                 }
             },
             "columns": [
+                {
+                    "data": "noteIdentificationNumber",
+                    "render": function (data, type, row, meta) {
+                        return '<strong>' + data + '</strong>';
+                    }
+                },
                 { "data": "payerName" },
                 {
                     "data": "issueDate",
@@ -86,8 +92,26 @@ var Notas = {
                     "render": function (data, type, row) {
                         return getStatusDescription(data);
                     }
-                }
+                },
+                {
+                    "data": "invoiceDocument",
+                    "render": function (data, type, row, meta) {
+                        return '<div class="icon__document" data-bs-toggle="tooltip" data-bs-placement="top" title="Nota Fiscal"><i class="fa-solid fa-file-invoice"></i></div>';
+                    }
+                },
+                {
+                    "data": "bankSlipDocument",
+                    "render": function (data, type, row, meta) {
+                        return '<div class="icon__document" data-bs-toggle="tooltip" data-bs-placement="top" title="Boleto Bancário"><i class="fa-solid fa-print"></i></div>';
+                    }
+                },
             ],
+            "drawCallback": function (settings) {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            },
             "language": {
                 "url": 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese.json'
             },

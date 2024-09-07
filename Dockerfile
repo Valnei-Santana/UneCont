@@ -6,6 +6,8 @@ WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 
+ENV ASPNETCORE_ENVIRONMENT Development
+
 # Copia o código-fonte e constrói
 COPY . ./
 RUN dotnet publish -c Release -o out

@@ -97,35 +97,35 @@ public class NotesController : BaseController
                 break;
         }
 
-        var totalBillingCompleted = await _context.Notes
-            .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate && n.Status == NoteStatus.BillingCompleted)
-            .SumAsync(n => n.NoteValue);
+        var totalEmitidasGeral = await _context.Notes
+            .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate)
+            .SumAsync(n => n.NoteValue); // Total emitidas
 
-        var totalIssued = await _context.Notes
+        var totalSemCobranca = await _context.Notes
             .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate && n.Status == NoteStatus.Issued)
-            .SumAsync(n => n.NoteValue);
+            .SumAsync(n => n.NoteValue); //Total emitidas sem cobrança
 
-        var totalPaymentOverdue = await _context.Notes
+        var totalVencidas = await _context.Notes
             .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate && n.Status == NoteStatus.PaymentOverdue)
             .SumAsync(n => n.NoteValue);
 
-        var totalBillingCompletedAndIssued = await _context.Notes
+        var totalAVencer = await _context.Notes
             .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate &&
                         (n.Status == NoteStatus.BillingCompleted || n.Status == NoteStatus.Issued))
-            .SumAsync(n => n.NoteValue);
-
-        var totalPaymentCompleted = await _context.Notes
+            .SumAsync(n => n.NoteValue); // A vencer
+            
+        var totalPagas = await _context.Notes
             .Where(n => n.IssueDate >= startDate && n.IssueDate <= endDate && n.Status == NoteStatus.PaymentCompleted)
-            .SumAsync(n => n.NoteValue);
+            .SumAsync(n => n.NoteValue); //Pagas
 
 
         var indicators = new
         {
-            totalEmitidas = totalBillingCompleted, //Emitidas (com cobrança)
-            semCobranca = totalIssued, //Emitidas (sem cobrança)
-            inadimplencia = totalPaymentOverdue, // Vencidas
-            aVencer = totalBillingCompletedAndIssued, //A vencer (Emitidas c/s cobrança...)
-            Pagas = totalPaymentCompleted // Pagas
+            totalEmitidas = totalEmitidasGeral, //Emitidas
+            semCobranca = totalSemCobranca, //Emitidas (sem cobrança)
+            inadimplencia = totalVencidas, // Vencidas
+            aVencer = totalAVencer, //A vencer (Emitidas c/s cobrança...)
+            Pagas = totalPagas // Pagas
         };
 
         return Json(indicators);

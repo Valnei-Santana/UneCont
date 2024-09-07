@@ -9,6 +9,7 @@ Teste para UneCont utilizando .NET 8.0 usando o padrão MVC. Ele apresenta indic
 
 - **Front-End**:
   - **ApexCharts**: Para gráficos interativos.
+  - **DataTables**: Para tabelas.
   - **Bootstrap**: Para design responsivo. (solicitado)
 
 ## Configuração (Dotnet)
